@@ -38,7 +38,7 @@
                     <strong>Office 365</strong>
                 </p>
                 <p>Office 365 EWS endpoint is now standard for all customers:</p>
-                <code>https://outlook.office365.com/EWS/Exchange.asmx</code>
+                <code>https://partner.outlook.cn/EWS/Exchange.asmx</code>
                 <p>Also make sure you set mode to EWS in settings</p>
 
                 <p>
@@ -60,7 +60,7 @@
                         or directly on Azure AD if you have the rights, and add in davmail.properties:<br/>
                         <source>
 davmail.oauth.clientId=<i>yourappid</i>
-davmail.oauth.redirectUri=https://login.microsoftonline.com/common/oauth2/nativeclient
+davmail.oauth.redirectUri=https://login.partner.microsoftonline.cn/common/oauth2/nativeclient
                         </source>
                     </li>
                     <li>Default tenant id is common, set tenantId to force company tenant:<br/>

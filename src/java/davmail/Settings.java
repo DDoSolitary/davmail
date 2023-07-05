@@ -41,7 +41,7 @@ public final class Settings {
 
     private static final Logger LOGGER = Logger.getLogger(Settings.class);
 
-    public static final String O365_URL = "https://outlook.office365.com/EWS/Exchange.asmx";
+    public static final String O365_URL = "https://partner.outlook.cn/EWS/Exchange.asmx";
     public static final String O365 = "O365";
     public static final String O365_MODERN = "O365Modern";
     public static final String O365_INTERACTIVE = "O365Interactive";

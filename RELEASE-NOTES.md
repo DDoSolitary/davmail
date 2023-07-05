@@ -843,7 +843,7 @@ with native Office 365 authentication, and not with ADFS.
 - Merge #50 Assume notray in server mode 
 - Display connection mode help as a tooltip
 - Merge DesktopBrowser: add support for xdg-open directly, see https://github.com/mguessan/davmail/pull/5
-- Workaround for login.microsoftonline.com cookie domain
+- Workaround for login.partner.microsoftonline.cn cookie domain
 - i18n new davmail.mode setting
 - Drop davmail.enableEws to create a new davmail.mode setting that can be EWS, WebDav, O365, O365Modern, O365Interactive or Auto
 - Another JavaFX message fix
@@ -1212,7 +1212,7 @@ An experimental connection logging feature is also available.
 - Use Office365 url as default davmail.url value
 - Remove Sun (Oracle) JDK dependency in unit test
 - Experimental: compile Junit tests
-- Change default url to https://outlook.office365.com/EWS/Exchange.asmx
+- Change default url to https://partner.outlook.cn/EWS/Exchange.asmx
 - Log all connections disconnect
 - Log all connections and logon success / failure
 - Improve TLS settings: disable Client-initiated TLS renegotiation with jdk.tls.rejectClientInitiatedRenegotiation and force strong ephemeral Diffie-Hellman parameter with jdk.tls.ephemeralDHKeySize

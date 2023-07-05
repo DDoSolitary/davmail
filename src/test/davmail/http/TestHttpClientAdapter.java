@@ -75,17 +75,17 @@ public class TestHttpClientAdapter extends AbstractDavMailTestCase {
         // common DavMail client id
         String clientId = Settings.getProperty("davmail.oauth.clientId", "facd6cff-a294-4415-b59f-c5b01937d7bd");
         // standard native app redirectUri
-        String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.microsoftonline.com/common/oauth2/nativeclient");
+        String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.partner.microsoftonline.cn/common/oauth2/nativeclient");
 
         URI uri = new URIBuilder()
                 .setScheme("https")
-                .setHost("login.microsoftonline.com")
+                .setHost("login.partner.microsoftonline.cn")
                 .setPath("/common/oauth2/authorize")
                 .addParameter("client_id", clientId)
                 .addParameter("response_type", "code")
                 .addParameter("redirect_uri", redirectUri)
                 .addParameter("response_mode", "query")
-                .addParameter("resource", "https://outlook.office365.com")
+                .addParameter("resource", "https://partner.outlook.cn")
                 .addParameter("login_hint", username)
                 // force consent
                 //.addParameter("prompt", "consent")
@@ -112,7 +112,7 @@ public class TestHttpClientAdapter extends AbstractDavMailTestCase {
 
             String referer = getRequest.getURI().toString();
 
-            RestRequest getCredentialRequest = new RestRequest("https://login.microsoftonline.com/common/GetCredentialType");
+            RestRequest getCredentialRequest = new RestRequest("https://login.partner.microsoftonline.cn/common/GetCredentialType");
             getCredentialRequest.setHeader("Accept", "application/json");
             getCredentialRequest.setHeader("canary", apiCanary);
             getCredentialRequest.setHeader("client-request-id", clientRequestId);
@@ -141,7 +141,7 @@ public class TestHttpClientAdapter extends AbstractDavMailTestCase {
             System.out.println("federationRedirectUrl=" + federationRedirectUrl);
 
             if (federationRedirectUrl == null || federationRedirectUrl.isEmpty()) {
-                PostRequest logonMethod = new PostRequest(URI.create("https://login.microsoftonline.com/common/login"));
+                PostRequest logonMethod = new PostRequest(URI.create("https://login.partner.microsoftonline.cn/common/login"));
                 logonMethod.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                 logonMethod.setHeader("Content-Type", "application/x-www-form-urlencoded");
 

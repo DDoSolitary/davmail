@@ -46,7 +46,7 @@ public class O365ManualAuthenticator implements ExchangeAuthenticator {
     String errorCode = null;
     String code = null;
 
-    String resource = "https://outlook.office365.com";
+    String resource = "https://partner.outlook.cn";
     URI ewsUrl = URI.create(resource + "/EWS/Exchange.asmx");
 
     private O365ManualAuthenticatorDialog o365ManualAuthenticatorDialog;
@@ -89,7 +89,7 @@ public class O365ManualAuthenticator implements ExchangeAuthenticator {
         // common DavMail client id
         final String clientId = Settings.getProperty("davmail.oauth.clientId", "facd6cff-a294-4415-b59f-c5b01937d7bd");
         // standard native app redirectUri
-        final String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.microsoftonline.com/common/oauth2/nativeclient");
+        final String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.partner.microsoftonline.cn/common/oauth2/nativeclient");
         // company tenantId or common
         String tenantId = Settings.getProperty("davmail.oauth.tenantId", "common");
 

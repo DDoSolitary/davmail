@@ -46,7 +46,7 @@ davmail.server=true
 # connection mode auto, EWS or WebDav
 davmail.mode=EWS
 # base Exchange OWA or EWS url
-davmail.url=https://outlook.office365.com/EWS/Exchange.asmx
+davmail.url=https://partner.outlook.cn/EWS/Exchange.asmx
 
 # Listener ports
 davmail.caldavPort=1080

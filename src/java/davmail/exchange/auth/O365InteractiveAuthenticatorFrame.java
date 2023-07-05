@@ -97,15 +97,15 @@ public class O365InteractiveAuthenticatorFrame extends JFrame {
                                 }
                                 final HttpURLConnection httpsURLConnection = (HttpURLConnection) super.openConnection(url, proxy);
 
-                                if (("login.microsoftonline.com".equals(url.getHost()) && url.getPath().endsWith("/oauth2/authorize"))
+                                if (("login.partner.microsoftonline.cn".equals(url.getHost()) && url.getPath().endsWith("/oauth2/authorize"))
                                         || ("login.live.com".equals(url.getHost()) && "/oauth20_authorize.srf".equals(url.getPath()))
                                         || ("login.live.com".equals(url.getHost()) && "/ppsecure/post.srf".equals(url.getPath()))
-                                        || ("login.microsoftonline.com".equals(url.getHost()) && "/login.srf".equals(url.getPath()))
-                                        || ("login.microsoftonline.com".equals(url.getHost()) && url.getPath().endsWith("/login"))
-                                        || ("login.microsoftonline.com".equals(url.getHost()) && url.getPath().endsWith("/SAS/ProcessAuth"))
-                                        || ("login.microsoftonline.com".equals(url.getHost()) && url.getPath().endsWith("/federation/oauth2"))
+                                        || ("login.partner.microsoftonline.cn".equals(url.getHost()) && "/login.srf".equals(url.getPath()))
+                                        || ("login.partner.microsoftonline.cn".equals(url.getHost()) && url.getPath().endsWith("/login"))
+                                        || ("login.partner.microsoftonline.cn".equals(url.getHost()) && url.getPath().endsWith("/SAS/ProcessAuth"))
+                                        || ("login.partner.microsoftonline.cn".equals(url.getHost()) && url.getPath().endsWith("/federation/oauth2"))
                                         // v2 OIDC endpoint
-                                        || ("login.microsoftonline.com".equals(url.getHost()) && url.getPath().endsWith("/oauth2/v2.0/authorize"))
+                                        || ("login.partner.microsoftonline.cn".equals(url.getHost()) && url.getPath().endsWith("/oauth2/v2.0/authorize"))
                                         // Okta authentication form /oauth2/v2.0/authorize
                                         || (url.getHost().endsWith(".okta.com") &&
                                         !url.getPath().startsWith("/api/v1/authn"))

@@ -37,11 +37,11 @@ import java.util.BitSet;
 public class TestURIBuilder extends TestCase {
     public void testEncodeParams() throws URISyntaxException {
         String clientId = "facd6cff-a294-4415-b59f-c5b01937d7bd";
-        String redirectUri = "https://login.microsoftonline.com/common/oauth2/nativeclient";
-        String resource = "https://outlook.office365.com";
+        String redirectUri = "https://login.partner.microsoftonline.cn/common/oauth2/nativeclient";
+        String resource = "https://partner.outlook.cn";
         String username = "domain\\userid|user@company.com";
 
-        String url = "https://login.microsoftonline.com/common/oauth2/authorize"
+        String url = "https://login.partner.microsoftonline.cn/common/oauth2/authorize"
                 + "?client_id=" + clientId
                 + "&response_type=code"
                 + "&redirect_uri=" + URIUtil.encodeWithinQuery(redirectUri)
@@ -50,7 +50,7 @@ public class TestURIBuilder extends TestCase {
                 + "&login_hint=" + URIUtil.encodeWithinQuery(username);
         URI uri = new URIBuilder()
                 .setScheme("https")
-                .setHost("login.microsoftonline.com")
+                .setHost("login.partner.microsoftonline.cn")
                 .setPath("/common/oauth2/authorize")
                 .addParameter("client_id", clientId)
                 .addParameter("response_type", "code")

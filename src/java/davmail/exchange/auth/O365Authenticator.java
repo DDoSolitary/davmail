@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 public class O365Authenticator implements ExchangeAuthenticator {
     protected static final Logger LOGGER = Logger.getLogger(O365Authenticator.class);
 
-    private static final String RESOURCE = "https://outlook.office365.com";
+    private static final String RESOURCE = "https://partner.outlook.cn";
 
     private String tenantId;
     // Office 365 username
@@ -59,7 +59,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
         try {
             URIBuilder uriBuilder = new URIBuilder()
                     .setScheme("https")
-                    .setHost("login.microsoftonline.com")
+                    .setHost("login.partner.microsoftonline.cn")
                     .addParameter("client_id", clientId)
                     .addParameter("response_type", "code")
                     .addParameter("redirect_uri", redirectUri)
@@ -71,7 +71,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
             // switch to new v2.0 OIDC compliant endpoint https://docs.microsoft.com/en-us/azure/active-directory/develop/azure-ad-endpoint-comparison
             if (Settings.getBooleanProperty("davmail.enableOidc", false)) {
                 uriBuilder.setPath("/" + tenantId + "/oauth2/v2.0/authorize")
-                        .addParameter("scope", "openid https://outlook.office365.com/EWS.AccessAsUser.All");
+                        .addParameter("scope", "openid https://partner.outlook.cn/EWS.AccessAsUser.All");
             } else {
                 uriBuilder.setPath("/" + tenantId + "/oauth2/authorize")
                         .addParameter("resource", RESOURCE);
@@ -119,7 +119,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
             // common DavMail client id
             String clientId = Settings.getProperty("davmail.oauth.clientId", "facd6cff-a294-4415-b59f-c5b01937d7bd");
             // standard native app redirectUri
-            String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.microsoftonline.com/common/oauth2/nativeclient");
+            String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.partner.microsoftonline.cn/common/oauth2/nativeclient");
             // company tenantId or common
             tenantId = Settings.getProperty("davmail.oauth.tenantId", "common");
 
@@ -155,7 +155,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
 
                 String referer = getRequest.getURI().toString();
 
-                RestRequest getCredentialMethod = new RestRequest("https://login.microsoftonline.com/" + tenantId + "/GetCredentialType");
+                RestRequest getCredentialMethod = new RestRequest("https://login.partner.microsoftonline.cn/" + tenantId + "/GetCredentialType");
                 getCredentialMethod.setRequestHeader("Accept", "application/json");
                 getCredentialMethod.setRequestHeader("canary", apiCanary);
                 getCredentialMethod.setRequestHeader("client-request-id", clientRequestId);
@@ -187,7 +187,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
                     LOGGER.debug("Detected ADFS, redirecting to " + federationRedirectUrl);
                     code = authenticateRedirectADFS(httpClientAdapter, federationRedirectUrl, url);
                 } else {
-                    PostRequest logonMethod = new PostRequest("https://login.microsoftonline.com/" + tenantId + "/login");
+                    PostRequest logonMethod = new PostRequest("https://login.partner.microsoftonline.cn/" + tenantId + "/login");
                     logonMethod.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                     logonMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -254,7 +254,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
     private String authenticateADFS(HttpClientAdapter httpClientAdapter, String responseBodyAsString, String authorizeUrl) throws IOException, JSONException {
         URI location;
 
-        if (responseBodyAsString.contains("login.microsoftonline.com")) {
+        if (responseBodyAsString.contains("login.partner.microsoftonline.cn")) {
             LOGGER.info("Already authenticated through Basic or NTLM");
         } else {
             // parse form to get target url, authenticate as userid
@@ -275,7 +275,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
             responseBodyAsString = httpClientAdapter.executeGetRequest(redirectMethod);
         }
 
-        if (!responseBodyAsString.contains("login.microsoftonline.com")) {
+        if (!responseBodyAsString.contains("login.partner.microsoftonline.cn")) {
             throw new DavMailAuthenticationException("EXCEPTION_AUTHENTICATION_FAILED");
         }
         String targetUrl = extract("action=\"([^\"]+)\"", responseBodyAsString);
@@ -312,7 +312,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
             throw new IOException("Unknown ADFS authentication failure");
         }
 
-        if ("device.login.microsoftonline.com".equals(location.getHost())) {
+        if ("device.login.partner.microsoftonline.cn".equals(location.getHost())) {
             location = processDeviceLogin(httpClientAdapter, location);
         }
         String query = location.getQuery();
@@ -342,7 +342,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
 
         String responseBodyAsString = httpClient.executeGetRequest(deviceLoginMethod);
 
-        if (responseBodyAsString.contains("login.microsoftonline.com")) {
+        if (responseBodyAsString.contains("login.partner.microsoftonline.cn")) {
             String ctx = extract("name=\"ctx\" value=\"([^\"]+)\"", responseBodyAsString);
             String flowtoken = extract("name=\"flowtoken\" value=\"([^\"]+)\"", responseBodyAsString);
 
@@ -375,7 +375,7 @@ public class O365Authenticator implements ExchangeAuthenticator {
         String urlBeginAuth = config.getString("urlBeginAuth");
         String urlEndAuth = config.getString("urlEndAuth");
         // Get processAuth url from config
-        String urlProcessAuth = config.optString("urlPost", "https://login.microsoftonline.com/" + tenantId + "/SAS/ProcessAuth");
+        String urlProcessAuth = config.optString("urlPost", "https://login.partner.microsoftonline.cn/" + tenantId + "/SAS/ProcessAuth");
 
         boolean isMFAMethodSupported = false;
 

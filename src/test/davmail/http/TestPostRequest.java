@@ -42,7 +42,7 @@ public class TestPostRequest extends AbstractDavMailTestCase {
 
     public void testRedirect() throws IOException {
         // execute get request, do not follow redirect
-        final String outlookUrl = "https://outlook.office365.com";
+        final String outlookUrl = "https://partner.outlook.cn";
         try (HttpClientAdapter httpClientAdapter = new HttpClientAdapter(outlookUrl)) {
             PostRequest request = new PostRequest(outlookUrl);
             String responseString = httpClientAdapter.executePostRequest(request);

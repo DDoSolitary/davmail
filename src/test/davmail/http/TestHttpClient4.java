@@ -105,7 +105,7 @@ public class TestHttpClient4 extends AbstractDavMailTestCase {
                 .setConnectionManager(poolingHttpClientConnectionManager);
         try (CloseableHttpClient httpClient = clientBuilder.build()) {
 
-            HttpGet httpget = new HttpGet("https://outlook.office365.com");
+            HttpGet httpget = new HttpGet("https://partner.outlook.cn");
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
                 assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, response.getStatusLine().getStatusCode());
             }
@@ -131,7 +131,7 @@ public class TestHttpClient4 extends AbstractDavMailTestCase {
                 .setConnectionManager(poolingHttpClientConnectionManager);
         try (CloseableHttpClient httpClient = clientBuilder.build()) {
 
-            HttpGet httpget = new HttpGet("https://outlook.office365.com/EWS/Exchange.asmx");
+            HttpGet httpget = new HttpGet("https://partner.outlook.cn/EWS/Exchange.asmx");
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
                 assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
                 String responseString = new BasicResponseHandler().handleResponse(response);
@@ -202,7 +202,7 @@ public class TestHttpClient4 extends AbstractDavMailTestCase {
 
         HttpClientBuilder clientBuilder = HttpClientBuilder.create().disableRedirectHandling();
         try (CloseableHttpClient httpClient = clientBuilder.build()) {
-            HttpGet httpget = new HttpGet("https://outlook.office365.com/owa/");
+            HttpGet httpget = new HttpGet("https://partner.outlook.cn/owa/");
             Header location;
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
                 assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, response.getStatusLine().getStatusCode());

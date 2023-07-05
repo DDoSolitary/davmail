@@ -41,7 +41,7 @@ import java.util.Date;
  * O365 token wrapper
  */
 public class O365Token {
-    protected final String RESOURCE_URL = "https://outlook.office365.com/";
+    protected final String RESOURCE_URL = "https://partner.outlook.cn/";
 
     protected static final Logger LOGGER = Logger.getLogger(O365Token.class);
 
@@ -57,14 +57,14 @@ public class O365Token {
     public O365Token(String tenantId, String clientId, String redirectUri, String password) {
         this.clientId = clientId;
         this.redirectUri = redirectUri;
-        this.tokenUrl = "https://login.microsoftonline.com/" + tenantId + "/oauth2/token";
+        this.tokenUrl = "https://login.partner.microsoftonline.cn/" + tenantId + "/oauth2/token";
         this.password = password;
     }
 
     public O365Token(String tenantId, String clientId, String redirectUri, String code, String password) throws IOException {
         this.clientId = clientId;
         this.redirectUri = redirectUri;
-        this.tokenUrl = "https://login.microsoftonline.com/" + tenantId + "/oauth2/token";
+        this.tokenUrl = "https://login.partner.microsoftonline.cn/" + tenantId + "/oauth2/token";
         this.password = password;
 
         ArrayList<NameValuePair> parameters = new ArrayList<>();
@@ -164,7 +164,7 @@ public class O365Token {
         parameters.add(new BasicNameValuePair("refresh_token", refreshToken));
         parameters.add(new BasicNameValuePair("redirect_uri", redirectUri));
         parameters.add(new BasicNameValuePair("client_id", clientId));
-        parameters.add(new BasicNameValuePair("resource", "https://outlook.office365.com/"));
+        parameters.add(new BasicNameValuePair("resource", "https://partner.outlook.cn/"));
 
         RestRequest tokenRequest = new RestRequest(tokenUrl, new UrlEncodedFormEntity(parameters, Consts.UTF_8));
 
