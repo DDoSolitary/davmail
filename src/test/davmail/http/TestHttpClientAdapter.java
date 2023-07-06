@@ -75,7 +75,7 @@ public class TestHttpClientAdapter extends AbstractDavMailTestCase {
         // common DavMail client id
         String clientId = Settings.getProperty("davmail.oauth.clientId", "facd6cff-a294-4415-b59f-c5b01937d7bd");
         // standard native app redirectUri
-        String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.partner.microsoftonline.cn/common/oauth2/nativeclient");
+        String redirectUri = Settings.getProperty("davmail.oauth.redirectUri", "https://login.microsoftonline.com/common/oauth2/nativeclient");
 
         URI uri = new URIBuilder()
                 .setScheme("https")

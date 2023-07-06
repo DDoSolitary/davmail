@@ -37,7 +37,7 @@ import java.util.BitSet;
 public class TestURIBuilder extends TestCase {
     public void testEncodeParams() throws URISyntaxException {
         String clientId = "facd6cff-a294-4415-b59f-c5b01937d7bd";
-        String redirectUri = "https://login.partner.microsoftonline.cn/common/oauth2/nativeclient";
+        String redirectUri = "https://login.microsoftonline.com/common/oauth2/nativeclient";
         String resource = "https://partner.outlook.cn";
         String username = "domain\\userid|user@company.com";
 

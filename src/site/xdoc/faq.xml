@@ -60,7 +60,7 @@
                         or directly on Azure AD if you have the rights, and add in davmail.properties:<br/>
                         <source>
 davmail.oauth.clientId=<i>yourappid</i>
-davmail.oauth.redirectUri=https://login.partner.microsoftonline.cn/common/oauth2/nativeclient
+davmail.oauth.redirectUri=https://login.microsoftonline.com/common/oauth2/nativeclient
                         </source>
                     </li>
                     <li>Default tenant id is common, set tenantId to force company tenant:<br/>
